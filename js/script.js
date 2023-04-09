@@ -41,7 +41,7 @@ function genRepo(user) {
           }
 
           // Puts repo information into div
-          var html = `
+          var html = `<a href='${repo_url}' target='_blank'>
           <div class='repo-item'>
             <h1 class='title'>${username}/${repo_name}</h1>
             <p class='description'>${repo_description}</p>
@@ -53,7 +53,8 @@ function genRepo(user) {
             `
           if (pages_url) html += `<div class='pages'><a class='pages-link' href='${pages_url}' target='_blank'>Pages</a></div>`
           html += `</div>
-                </div>`
+                </div>
+                </a>`
           $("#repo-box").append(html)
         }
       }
