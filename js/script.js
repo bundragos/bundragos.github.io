@@ -29,7 +29,7 @@ function genRepo(user) {
           var repo_language = request[i].language
           var repo_stars = request[i].stargazers_count
           var repo_forks = request[i].forks
-          var pages_url = `https://${username}.github.io/${repo_name}`
+          var pages_url = request[i].homepage
           if (repo_name === `${username}.github.io`) continue
 
           // replaces null values to be better represented when displayed
@@ -41,21 +41,20 @@ function genRepo(user) {
           }
 
           // Puts repo information into div
-          $("#repo-box").append(
-            `<a href='${repo_url}' target='_blank'>
-              <div class='repo-item'>
-                <h1 class='title'>${username}/${repo_name}</h1>
-                <p class='description'>${repo_description}</p>
-                <div class='bottom'>
-                  <div class='language'><span class='img' uk-icon='code' class='uk-icon'></span>${repo_language}</div>
-                  <div class='star'><span class='img' uk-icon='star' class='uk-icon'></span>${repo_stars}</div>
-                  <div class='fork'><span class='img' uk-icon='git-fork' class='uk-icon'></span>${repo_forks}</div>
-                  <div class='pages'><a class='pages-link' href='${repo_url}' target='_blank'>Repo</a></div>
-                  <div class='pages'><a class='pages-link' href='${pages_url}' target='_blank'>Pages</a></div>
-                </div>
-              </div>
-            </a>`
-          )
+          var html = `
+          <div class='repo-item'>
+            <h1 class='title'>${username}/${repo_name}</h1>
+            <p class='description'>${repo_description}</p>
+            <div class='bottom'>
+              <div class='language'><span class='img' uk-icon='code' class='uk-icon'></span>${repo_language}</div>
+              <div class='star'><span class='img' uk-icon='star' class='uk-icon'></span>${repo_stars}</div>
+              <div class='fork'><span class='img' uk-icon='git-fork' class='uk-icon'></span>${repo_forks}</div>
+              <div class='pages'><a class='pages-link' href='${repo_url}' target='_blank'>Repo</a></div>
+            `
+          if (pages_url) html += `<div class='pages'><a class='pages-link' href='${pages_url}' target='_blank'>Pages</a></div>`
+          html += `</div>
+                </div>`
+          $("#repo-box").append(html)
         }
       }
     })
