@@ -5,7 +5,7 @@
 
 // To use a form instead of a specific user comment out the following 2 lines of code:
 
-var user = "bundragos" // alternatively, manually enter a different user than yourself using var user = 'alternate_username';
+var user = "bunducdragos" // alternatively, manually enter a different user than yourself using var user = 'alternate_username';
 window.onload = genRepo(user)
 
 function genRepo(user) {
